@@ -72,7 +72,7 @@ public class MainManager : MonoBehaviour
         // Combine name + score
         ScoreText.text = $"{storedText} Score: {m_Points}";
 
-        // ScoreText.text = $"Score : {m_Points}";
+        // Originele code: ScoreText.text = $"Score : {m_Points}";
     }
 
     public void GameOver()
