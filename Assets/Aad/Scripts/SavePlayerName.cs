@@ -15,7 +15,10 @@ public class SavePlayerName : MonoBehaviour
 
     void OnTextChanged(string value)
     {
-        storedText = value;
-        Debug.Log("Stored text: " + storedText);
+        // Save the text to use in another scene...
+        PlayerPrefs.SetString("StoredText", value);
+        PlayerPrefs.Save();
+        
+        Debug.Log("Stored text: " + value );
     }
 }

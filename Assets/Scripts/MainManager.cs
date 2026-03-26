@@ -65,7 +65,14 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
+
+        // Load stored text
+        string storedText = PlayerPrefs.GetString("StoredText", "Player");
+
+        // Combine name + score
+        ScoreText.text = $"{storedText} Score: {m_Points}";
+
+        // ScoreText.text = $"Score : {m_Points}";
     }
 
     public void GameOver()
