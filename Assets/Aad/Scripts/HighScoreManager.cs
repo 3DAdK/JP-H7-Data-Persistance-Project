@@ -45,4 +45,20 @@ public class HighScoreManager : MonoBehaviour
         // Always show best score (even if not beaten yet)
         HighScoreText.text = $"Best: {m_HighScoreName} : {m_HighScore}";
     }
+
+    // To reset the highest score:
+    public void ResetHighScore()
+    {
+        // Reset values
+        m_HighScore = 0;
+        m_HighScoreName = "Player";
+
+        // Clear saved data
+        PlayerPrefs.DeleteKey("HighScore");
+        PlayerPrefs.DeleteKey("HighScoreName");
+        PlayerPrefs.Save();
+
+        // Update UI immediately
+        UpdateHighScoreText();
+    }
 }
