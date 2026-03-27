@@ -69,13 +69,13 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
 
-        // Load stored text
         string storedText = PlayerPrefs.GetString("StoredText", "Player");
 
-        // Combine name + score
+        // Update current score
         ScoreText.text = $"{storedText} Score: {m_Points}";
 
-        // ScoreText.text = $"Score : {m_Points}";
+        // Here we update high score display during gameplay:
+        HighScoreManager.UpdateLive(m_Points);
     }
 
     public void GameOver()

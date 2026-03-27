@@ -4,33 +4,45 @@ using UnityEngine.UI;
 public class HighScoreManager : MonoBehaviour
 {
     public Text HighScoreText;
+
     private int m_HighScore;
+    private string m_HighScoreName;
 
     void Start()
     {
-        // Load high score (default = 0)
+        // Load saved data
         m_HighScore = PlayerPrefs.GetInt("HighScore", 0);
+        m_HighScoreName = PlayerPrefs.GetString("HighScoreName", "Player");
 
         UpdateHighScoreText();
     }
 
     public void TrySetHighScore(int score)
     {
+        string currentPlayer = PlayerPrefs.GetString("StoredText", "Player");
+
         if (score > m_HighScore)
         {
             m_HighScore = score;
+            m_HighScoreName = currentPlayer;
 
-            // Save new high score
             PlayerPrefs.SetInt("HighScore", m_HighScore);
+            PlayerPrefs.SetString("HighScoreName", m_HighScoreName);
             PlayerPrefs.Save();
 
             UpdateHighScoreText();
         }
     }
 
-    void UpdateHighScoreText()
+    public void UpdateHighScoreText()
     {
-        string playerName = PlayerPrefs.GetString("StoredText", "Player");
-        HighScoreText.text = $"{playerName} High Score: {m_HighScore}";
+        HighScoreText.text = $"Best: {m_HighScoreName} : {m_HighScore}";
+    }
+
+    // This is called during gameplay
+    public void UpdateLive(int currentScore)
+    {
+        // Always show best score (even if not beaten yet)
+        HighScoreText.text = $"Best: {m_HighScoreName} : {m_HighScore}";
     }
 }
