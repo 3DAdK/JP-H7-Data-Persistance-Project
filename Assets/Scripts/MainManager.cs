@@ -18,7 +18,10 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
-    
+    // Added variable for highscoremanager:
+    public HighScoreManager HighScoreManager;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,5 +82,8 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+
+        // Added code to check for high score:
+        HighScoreManager.TrySetHighScore(m_Points);
     }
 }
