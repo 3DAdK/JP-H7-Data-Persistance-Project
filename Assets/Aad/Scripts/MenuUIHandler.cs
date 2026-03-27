@@ -30,6 +30,13 @@ public class MenuUIHandler : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    // My method to load the menu scene.
+    public void StartMenu()
+    {
+        // The number 0 is the index of the scene we want to load.
+        SceneManager.LoadScene(0);
+    }
+
     // Our method to exit the application.
     public void Exit()
     {
